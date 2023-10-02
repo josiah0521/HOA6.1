@@ -1,0 +1,19 @@
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache and php for Ubuntu servers
+    apt:
+      name:
+        - apache2
+        - libapache2-mode-php
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: isntall apache and php for CentOS servers
+    dnf:
+      name:
+        - httpd
+        - php
+      state:
+    when: ansible_distribution == "CentOS"
